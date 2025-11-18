@@ -89,7 +89,7 @@ return Booking
 - Integration tests for services
 - E2E tests for routes
 
-## Future Enhancements
+## Possible future Enhancements
 - PostgreSQL/MongoDB adapter
 - Authentication/authorization
 - Rate limiting

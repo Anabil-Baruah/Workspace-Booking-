@@ -166,31 +166,37 @@ Response:
 
 ```
 /
-├── server/               # Node.js + Express backend
+├── server/                             # Node.js + Express backend
 │   ├── src/
-│   │   ├── models/       # Data models (Room, Booking)
-│   │   ├── db/           # In-memory storage
-│   │   ├── utils/        # Pricing, validation, datetime
-│   │   ├── services/     # Business logic layer
-│   │   ├── routes/       # API routes
-│   │   ├── middleware/   # Error handling
-│   │   ├── app.ts        # Express app setup
-│   │   └── server.ts     # Server bootstrap
+│   │   ├── models/                     # Data models (Room, Booking)
+│   │   ├── db/                         # In-memory storage
+│   │   ├── utils/                      # Pricing, validation, datetime
+│   │   ├── services/                   # Business logic layer
+│   │   ├── routes/                     # API routes
+│   │   ├── middleware/                 # Error handling
+│   │   ├── app.ts                      # Express app setup
+│   │   └── server.ts                   # Server bootstrap
+│   ├── tests/                          # Unit and integration tests
+│   │   ├── pricing.test.ts   
+│   │   ├── booking.test.ts   
+│   │   ├── cancellation.test.ts
+│   │   ├── validation.test.ts
+│   │   └── analytics.test.ts
 │   ├── package.json
 │   └── tsconfig.json
 │
-├── frontend/             # React + Vite frontend
+├── frontend/                           # React + Vite frontend
 │   ├── src/
-│   │   ├── components/   # React components
-│   │   ├── pages/        # Page components
-│   │   ├── services/     # API client
-│   │   ├── types/        # TypeScript types
-│   │   └── main.tsx      # App entry point
+│   │   ├── components/                 # React components
+│   │   ├── pages/                      # Page components
+│   │   ├── services/                   # API client
+│   │   ├── types/                      # TypeScript types
+│   │   └── main.tsx                    # App entry point
 │   ├── package.json
 │   └── vite.config.ts
 │
-├── README.md             # This file
-└── ARCHITECTURE.md       # Technical architecture docs
+├── README.md                           # This file
+└── ARCHITECTURE.md                     # Technical architecture docs
 ```
 
 ## 🐳 Docker
