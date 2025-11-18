@@ -10,51 +10,51 @@ This workspace booking system follows **clean architecture** principles with cle
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                         Frontend (React)                     │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│  │  Rooms   │  │ Booking  │  │  Admin   │  │ Analytics│   │
-│  │   Page   │  │   Page   │  │   Page   │  │  Panel   │   │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘   │
+│                         Frontend (React)                    │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
+│  │  Rooms   │  │ Booking  │  │  Admin   │  │ Analytics│     │
+│  │   Page   │  │   Page   │  │   Page   │  │  Panel   │     │
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘     │
 │       └─────────────┴──────────────┴──────────────┘         │
 │                      │ API Client                           │
 └──────────────────────┼──────────────────────────────────────┘
                        │ HTTP/REST
 ┌──────────────────────┼──────────────────────────────────────┐
-│                      ▼                                       │
-│                   Routes Layer                               │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐                 │
-│  │  /rooms  │  │/bookings │  │/analytics│                 │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘                 │
+│                      ▼                                      │
+│                   Routes Layer                              │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐                   │
+│  │  /rooms  │  │/bookings │  │/analytics│                   │
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘                   │
 │       │             │              │                        │
 │       ▼             ▼              ▼                        │
-│  ┌─────────────────────────────────────────┐               │
+│  ┌─────────────────────────────────────────┐                │
 │  │         Services Layer                   │               │
-│  │  ┌──────────┐  ┌──────────┐  ┌────────┐│               │
-│  │  │  Room    │  │ Booking  │  │Analytics││               │
-│  │  │ Service  │  │ Service  │  │ Service ││               │
-│  │  └────┬─────┘  └────┬─────┘  └────┬───┘│               │
+│  │  ┌──────────┐  ┌──────────┐  ┌────────┐│                 │
+│  │  │  Room    │  │ Booking  │  │Analytics││                │
+│  │  │ Service  │  │ Service  │  │ Service ││                │
+│  │  └────┬─────┘  └────┬─────┘  └────┬───┘│                 │
 │  │       │             │              │     │               │
 │  │       └─────────────┴──────────────┘     │               │
-│  │                     │                     │               │
-│  └─────────────────────┼─────────────────────┘               │
-│                        ▼                                     │
+│  │                     │                     │              │
+│  └─────────────────────┼─────────────────────┘              │
+│                        ▼                                    │
 │  ┌──────────────────────────────────────────┐               │
-│  │          Utils Layer (Pure Functions)     │               │
-│  │  ┌─────────┐  ┌──────────┐  ┌─────────┐ │               │
-│  │  │ pricing │  │validation│  │datetime │ │               │
-│  │  └─────────┘  └──────────┘  └─────────┘ │               │
+│  │          Utils Layer (Pure Functions)    │               │
+│  │  ┌─────────┐  ┌──────────┐  ┌─────────┐  │               │
+│  │  │ pricing │  │validation│  │datetime │  │               │
+│  │  └─────────┘  └──────────┘  └─────────┘  │               │
 │  └──────────────────────────────────────────┘               │
-│                        │                                     │
-│                        ▼                                     │
+│                        │                                    │
+│                        ▼                                    │
 │  ┌──────────────────────────────────────────┐               │
-│  │       Storage Layer (In-Memory DB)        │               │
+│  │       Storage Layer (In-Memory DB)       │               │
 │  │  ┌─────────┐  ┌─────────┐                │               │
 │  │  │  Rooms  │  │Bookings │                │               │
 │  │  │  Array  │  │  Array  │                │               │
 │  │  └─────────┘  └─────────┘                │               │
 │  └──────────────────────────────────────────┘               │
-│                     Backend (Node.js)                        │
-└──────────────────────────────────────────────────────────────┘
+│                     Backend (Node.js)                       │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ## Data Models
@@ -94,7 +94,7 @@ interface Booking {
 
 ## Backend Layers
 
-### 1. Routes Layer (`backend/src/routes/`)
+### 1. Routes Layer (`server/src/routes/`)
 
 **Responsibility**: HTTP endpoint definitions and request/response handling
 
@@ -108,7 +108,7 @@ interface Booking {
 - `bookings.ts` - POST /api/bookings, GET /api/bookings, POST /api/bookings/:id/cancel
 - `analytics.ts` - GET /api/analytics
 
-### 2. Services Layer (`backend/src/services/`)
+### 2. Services Layer (`server/src/services/`)
 
 **Responsibility**: Business logic orchestration
 
@@ -130,7 +130,7 @@ interface Booking {
 - Use utils for calculations
 - Interact with storage layer
 
-### 3. Models Layer (`backend/src/models/`)
+### 3. Models Layer (`server/src/models/`)
 
 **Responsibility**: TypeScript interfaces and type definitions
 
@@ -142,7 +142,7 @@ interface Booking {
 - `Room.ts` - Room interface
 - `Booking.ts` - Booking interface + CreateBookingDTO
 
-### 4. Storage Layer (`backend/src/db/`)
+### 4. Storage Layer (`server/src/db/`)
 
 **Responsibility**: Data persistence (currently in-memory)
 
@@ -156,16 +156,16 @@ interface Booking {
 // Current: In-memory
 const storage = new InMemoryStorage();
 
-// Future: PostgreSQL
+// Future: if PostgreSQL
 const storage = new PostgreSQLStorage(connectionString);
 
-// Future: MongoDB
+// Future: if MongoDB
 const storage = new MongoDBStorage(mongoUri);
 ```
 
 Services remain **unchanged** during migration.
 
-### 5. Utils Layer (`backend/src/utils/`)
+### 5. Utils Layer (`server/src/utils/`)
 
 **Responsibility**: Pure functions with no side effects
 
@@ -508,6 +508,13 @@ For similar projects:
 
 ## Testing Strategy
 
+Implemented with Vitest under `server/test/`:
+- `pricing.test.ts` – peak/off-peak billing
+- `validation.test.ts` – duration and ordering rules
+- `cancellation.test.ts` – 2-hour rule and service flow
+- `bookingConflict.test.ts` – overlap detection and back-to-back acceptance
+- `analytics.test.ts` – hours/revenue and sorting
+
 ### Unit Tests (Recommended)
 
 **Utils Layer** (pure functions - easy to test):
@@ -579,6 +586,29 @@ describe('POST /api/bookings', () => {
 
 ## Deployment Architecture
 
+## Containerization
+
+Local development and demo use Docker Compose:
+
+```
+services:
+  backend:
+    build: ./server
+    ports:
+      - "3000:3000"
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_BASE_URL=http://backend:3000/api
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+```
+
+The frontend is built with `VITE_API_BASE_URL` pointing to the backend service name `backend`.
+
 ### Production Setup
 
 ```
@@ -618,7 +648,7 @@ describe('POST /api/bookings', () => {
 
 ### Environment Variables
 
-**Backend** (`backend/.env`):
+**Backend** (`server/.env`):
 ```bash
 PORT=3000
 NODE_ENV=production
@@ -632,5 +662,5 @@ VITE_API_BASE_URL=https://api.yourdomain.com
 
 ---
 
-**Last Updated**: 2025-11-17  
+**Last Updated**: 2025-11-18  
 **Version**: 1.0.0

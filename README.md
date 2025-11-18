@@ -166,7 +166,7 @@ Response:
 
 ```
 /
-├── backend/              # Node.js + Express backend
+├── server/               # Node.js + Express backend
 │   ├── src/
 │   │   ├── models/       # Data models (Room, Booking)
 │   │   ├── db/           # In-memory storage
@@ -193,6 +193,20 @@ Response:
 └── ARCHITECTURE.md       # Technical architecture docs
 ```
 
+## 🐳 Docker
+
+### Compose
+
+```bash
+docker compose build
+docker compose up -d
+```
+
+- Backend API: http://localhost:3000/api
+- Frontend app: http://localhost:5173
+
+The frontend is built with `VITE_API_BASE_URL=http://backend:3000/api` to call the backend service by its Compose name.
+
 ## 🌐 Deployment
 
 ### Backend Deployment (Render/Railway/Heroku)
@@ -218,20 +232,24 @@ Response:
 
 ```bash
 # Backend
-cd backend
-npm test  # (tests not implemented)
-
-# Frontend
-cd frontend
-npm test  # (tests not implemented)
+cd server
+npm test
 ```
+
+Covers:
+- Dynamic pricing calculation
+- Booking duration validation
+- Cancellation rules
+- Booking conflict detection
+- Analytics calculation
 
 ## 🔧 Technology Stack
 
 ### Backend
-- Node.js 18+
+- Node.js 20+
 - Express 4.x
 - TypeScript 5.x
+- Vitest (testing)
 - date-fns + date-fns-tz (timezone handling)
 
 ### Frontend
